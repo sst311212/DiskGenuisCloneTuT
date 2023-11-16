@@ -5,14 +5,14 @@
 
 ### 本範例使用 980 Pro (來源) 與 545S (目標) 操作
 
-先確認$$\color{red}{**目標磁碟**}$$的**分割表類型**是不是 GPT 格式  
+先確認<span style="color:Red">**目標磁碟**</span>的**分割表類型**是不是 GPT 格式  
 若是 MBR 格式則需要轉換成 GPT 格式才能繼續操作
 
 ![](/Images/001.gif)
 
 ------------
 
-先記住$\color{red}{目標磁碟}$的**總磁區數**`500118192`  
+先記住<span style="color:Red">**目標磁碟**</span>的**總磁區數**`500118192`  
 以及<span style="color:Blue">**來源磁碟**</span>的<span style="color:Brown">**磁碟區(3)**</span>的**總磁區數**`1202176`  
 #### 注意每個人的硬碟都不一樣，不要直接抄作業!!!
 ![](/Images/002.gif)
@@ -41,7 +41,7 @@
 
 ------------
 
-再來建立系統磁碟區，如果硬碟太大想多切幾塊出來都可以
+再來建立**系統磁碟區**，如果硬碟太大想多切幾塊出來都可以
 
 ![](/Images/007.gif)
 
@@ -54,16 +54,16 @@
 
 ------------
 
-OK讓我們來上電開機看看，輕鬆失敗(?
+## OK讓我們來上電開機看看，輕鬆失敗(?
 
 ![](/Images/009.png)
 
 ------------
 
-錯誤的原因是因為克隆的 ESP 磁碟區裡的 BCD 檔案還是使用的<span style="color:Blue">**來源磁碟**</span>的系統磁碟區做開機  
-因此在 QEMU 虛擬機模擬拔除<span style="color:Blue">**來源磁碟**</span>後就會找不到目標裝置，所以需要修正 BCD 檔案裡的紀錄
+報錯原因是因為克隆的 ESP 磁碟區裡的 BCD 檔案還是使用<span style="color:Blue">**來源磁碟**</span>的磁碟區做開機  
+因此在拔除<span style="color:Blue">**來源磁碟**</span>後就會找不到**目標裝置**，所以需要修正 BCD 檔案裡的開機紀錄
 
-先分配一個磁碟代號給 ESP 磁碟區才能使用 bcdedit 操作  
+先分配一個**磁碟代號**給 ESP 磁碟區才能使用 bcdedit 操作  
 拿到的 BCD 檔案路徑為`J:\EFI\Microsoft\Boot\BCD`
 
 ![](/Images/010.gif)
@@ -194,4 +194,4 @@ bcdedit /store "J:\EFI\Microsoft\Boot\BCD" /set {0a336cad-1546-11ed-b055-819c3fd
 
 ![](/Images/015.png)
 
-# 上電開機，輕鬆秒殺!!!
+# 完成
