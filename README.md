@@ -3,16 +3,16 @@
 ## 克隆操作需要用到 DiskGenius
 [https://download2.eassos.cn/DG5511508_x64.zip](https://download2.eassos.cn/DG5511508_x64.zip)
 
-### 本教學使用 Samsung 980 Pro (來源) 與 Intel 545S (目標)
+### 本範例使用 980 Pro (來源) 與 545S (目標) 操作
 
-先確認<span style="color:Red">**目標磁碟**</span>的**分割表類型**是不是 GPT 格式  
+先確認**$$\color{red}{目標磁碟}$$**的**分割表類型**是不是 GPT 格式  
 若是 MBR 格式則需要轉換成 GPT 格式才能繼續操作
 
 ![](/Images/001.gif)
 
 ------------
 
-先記住<span style="color:Red">**目標磁碟**</span>的**總磁區數**`500118192`  
+先記住$\color{red}{目標磁碟}$的**總磁區數**`500118192`  
 以及<span style="color:Blue">**來源磁碟**</span>的<span style="color:Brown">**磁碟區(3)**</span>的**總磁區數**`1202176`  
 #### 注意每個人的硬碟都不一樣，不要直接抄作業!!!
 ![](/Images/002.gif)
