@@ -190,6 +190,8 @@ bcdedit /store "J:\EFI\Microsoft\Boot\BCD" /set {0a336cad-1546-11ed-b055-819c3fd
 
 最後把 ESP 磁碟區的**磁碟代號**刪除掉，然後驗證結果
 
-![](/Images/014.png)
+![](/Images/014.gif)
+
+![](/Images/015.png)
 
 # 上電開機，輕鬆秒殺!!!
