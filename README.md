@@ -1,4 +1,6 @@
-# 克隆操作需要用到 DiskGenius
+# 使用 DiskGenius 手動克隆系統
+
+## 克隆操作需要用到 DiskGenius
 [https://download2.eassos.cn/DG5511508_x64.zip](https://download2.eassos.cn/DG5511508_x64.zip)
 
 ### 本教學使用 Samsung 980 Pro (來源) 與 Intel 545S (目標)
