@@ -1,17 +1,17 @@
-#### 克隆操作需要用到 DiskGenius 
+# 克隆操作需要用到 DiskGenius
 [https://download2.eassos.cn/DG5511508_x64.zip](https://download2.eassos.cn/DG5511508_x64.zip)
 
-#### 本教學使用 Samsung 980 Pro (來源) 與 Intel 545S (目標)
+### 本教學使用 Samsung 980 Pro (來源) 與 Intel 545S (目標)
 
-先確認<span style="color:Red">**目標磁碟**</span>的**分割表類型**是不是 GPT 格式
+先確認<span style="color:Red">**目標磁碟**</span>的**分割表類型**是不是 GPT 格式  
 若是 MBR 格式則需要轉換成 GPT 格式才能繼續操作
 
 ![](/Images/001.gif)
 
 ------------
 
-先記住<span style="color:Red">**目標磁碟**</span>的**總磁區數**`500118192`
-以及<span style="color:Blue">**來源磁碟**</span>的<span style="color:Brown">**磁碟區(3)**</span>的**總磁區數**`1202176`
+先記住<span style="color:Red">**目標磁碟**</span>的**總磁區數**`500118192`  
+以及<span style="color:Blue">**來源磁碟**</span>的<span style="color:Brown">**磁碟區(3)**</span>的**總磁區數**`1202176`  
 #### 注意每個人的硬碟都不一樣，不要直接抄作業!!!
 ![](/Images/002.gif)
 
@@ -23,7 +23,7 @@
 
 ------------
 
-在<span style="color:Red">**目標磁碟**</span>結尾建立 Recovery 磁碟區，請自行帶入上面記住的數字
+在<span style="color:Red">**目標磁碟**</span>結尾建立 Recovery 磁碟區，請自行帶入上面記住的數字  
 起始磁區號算法`500118192 - (500118192 mod 2048) - 1202176`等於`498915328`
 
 ![](/Images/004.gif)
@@ -34,7 +34,7 @@
 
 ![](/Images/006.gif)
 
-檢查**磁碟區類型 GUID** 是否為 `DE94BBA4-06D1-4D40-A16A-BFD50179D6AC`
+檢查**磁碟區類型 GUID** 是否為 `DE94BBA4-06D1-4D40-A16A-BFD50179D6AC`  
 有時程式會抽風沒修改到，若不一樣就再重複一次修改的步驟
 
 ------------
@@ -45,7 +45,7 @@
 
 ------------
 
-至此磁碟區已建立完畢，最後依序克隆`ESP、Recovery、系統`磁碟區過去就可以了
+至此磁碟區已建立完畢，最後依序克隆`ESP、Recovery、系統`磁碟區過去就可以了  
 這邊因為系統太大了，所以先用 Windows 安裝光碟裡的 install.wim 的資料測試
 
 ![](/Images/008.gif)
@@ -58,24 +58,24 @@ OK讓我們來上電開機看看，輕鬆失敗(?
 
 ------------
 
-錯誤的原因是因為克隆的 ESP 磁碟區裡的 BCD 檔案還是使用的<span style="color:Blue">**來源磁碟**</span>的系統磁碟區做開機
+錯誤的原因是因為克隆的 ESP 磁碟區裡的 BCD 檔案還是使用的<span style="color:Blue">**來源磁碟**</span>的系統磁碟區做開機  
 因此在 QEMU 虛擬機模擬拔除<span style="color:Blue">**來源磁碟**</span>後就會找不到目標裝置，所以需要修正 BCD 檔案裡的紀錄
 
-先分配一個磁碟代號給 ESP 磁碟區才能使用 bcdedit 操作
+先分配一個磁碟代號給 ESP 磁碟區才能使用 bcdedit 操作  
 拿到的 BCD 檔案路徑為`J:\EFI\Microsoft\Boot\BCD`
 
 ![](/Images/010.gif)
 
 ------------
 
-先抄下`ESP、Recovery`磁碟區的**設備路徑**
+先抄下`ESP、Recovery`磁碟區的**設備路徑**  
 `\Device\HarddiskVolume36`、`\Device\HarddiskVolume39`
 
 ![](/Images/011.gif)
 
 ------------
 
-接下來使用組合鍵 Win+R 輸入 cmd 叫出**命令提示字元**
+接下來使用組合鍵 Win+R 輸入 cmd 叫出**命令提示字元**  
 輸入指令`bcdedit /store "J:\EFI\Microsoft\Boot\BCD" /enum all`
 
 ![](/Images/012.png)
@@ -167,8 +167,8 @@ ramdisksdipath          \Recovery\WindowsRE\boot.sdi
 
 ------------
 
-得到的資料有很多 device partition 指向了<span style="color:Blue">**來源磁碟**</span>的**設備路徑**
-自己替換成<span style="color:Red">**目標磁碟**</span>的**設備路徑**後修改掉，下面提供本次範例用的指令
+得到的資料有很多 device partition 指向了<span style="color:Blue">**來源磁碟**</span>的**設備路徑**  
+自己替換成<span style="color:Red">**目標磁碟**</span>的**設備路徑**後修改掉，下面提供本次範例用的指令  
 #### 注意每個人的 identifier 跟設備路徑都會不一樣，不要直接抄作業!!!
 ```
 bcdedit /store "J:\EFI\Microsoft\Boot\BCD" /set {bootmgr} device partition=\Device\HarddiskVolume36
